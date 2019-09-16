@@ -39,7 +39,7 @@ class App extends Component {
   getUser = async username => {
     this.setState({ loading: true });
     const res = await axios.get(
-      `https://api.github.com/search/users/${username}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     );
     this.setState({ user: res.data, loading: false });
   };
@@ -89,7 +89,12 @@ class App extends Component {
                 exact
                 path='/user/:login'
                 render={props => (
-                  <User {...props} getUser={this.getUser} user={user} loading={loading} />
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    user={user}
+                    loading={loading}
+                  />
                 )}
               />
             </Switch>
