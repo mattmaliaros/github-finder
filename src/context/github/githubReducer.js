@@ -29,7 +29,7 @@ export default (state, action) => {
     case GET_REPOS:
       return {
         ...state,
-        repos: action.payload,
+        repos: [],
         loading: false
       };
     case SET_LOADING:
